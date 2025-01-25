@@ -31,6 +31,7 @@ canvas {
     font-size: 48px;
     z-index: 10;
     display: none;
+    text-align: center;
 }
 #retryButton {
     position: absolute;
@@ -39,7 +40,7 @@ canvas {
     transform: translateX(-50%);
     padding: 10px 20px;
     font-size: 24px;
-    background-color: #fbff00;
+    background-color: #1900ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -47,5 +48,70 @@ canvas {
     display: none;
 }
 #retryButton:hover {
-    background-color: #fffb00;
+    background-color: #a200ff;
+}
+#controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    gap: 20px;
+    z-index: 10;
+}
+
+#controls button {
+    padding: 15px 20px;
+    font-size: 18px;
+    background-color: #1080f862;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#controls button:hover {
+    background-color: #0057b346;
+}
+
+#controls #fireButton {
+    background-color: #fbff005d;
+    color: black;
+}
+
+#controls #fireButton:hover {
+    background-color: #ffa60083;
+}
+
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    #score, #highScore {
+        font-size: 18px;
+    }
+    #gameOver {
+        font-size: 36px;
+    }
+    #retryButton {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+    #controls {
+        display: flex;
+    }
+}
+
+/* Responsividad para pantallas muy pequeñas (teléfonos) */
+@media (max-width: 480px) {
+    #score, #highScore {
+        font-size: 14px;
+    }
+    #gameOver {
+        font-size: 28px;
+    }
+    #retryButton {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
 }

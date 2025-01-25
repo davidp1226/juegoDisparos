@@ -19,25 +19,39 @@ bulletImage.src = 'images/Huella.png'; // Imagen de los disparos
 const enemyImage = new Image();
 enemyImage.src = 'images/Ovni.png'; // Imagen de los enemigos
 
+let playerSpeed; // Variable para la velocidad del jugador
 
-// Nave
+// Verifica el tamaño de la pantalla y ajusta la velocidad
+function adjustPlayerSpeed() {
+    if (window.innerWidth <= 768) { 
+        playerSpeed = 5; 
+    } else { // Pantallas grandes
+        playerSpeed = 10; 
+    }
+}
+
+// Llama a la función al cargar la página o cuando cambie el tamaño de la ventana
+adjustPlayerSpeed();
+window.addEventListener("resize", adjustPlayerSpeed); 
+
+// gato
 const player = {
     width: 50,
     height: 50,
     x: canvas.width / 2 - 25,
-    y: canvas.height - 60,
-    speed: 10,
+    y: canvas.height - 100,
+    speed: playerSpeed,
     dx: 0,
 };
 
 // Disparos
 const bullets = [];
-const bulletSpeed = 7;
+const bulletSpeed = 10;
 
 // Enemigos
 const enemies = [];
 const enemySpeed = 2;
-const enemySize = 50;
+const enemySize = 30;
 
 // Función para dibujar la nave
 function drawPlayer() {
@@ -173,3 +187,41 @@ retryButton.addEventListener("click", restartGame);
 
 updateHighScore();
 updateGame();
+
+const leftArrow = document.getElementById("leftArrow");
+const rightArrow = document.getElementById("rightArrow");
+const fireButton = document.getElementById("fireButton");
+
+// Eventos para las flechas y el botón de disparar
+leftArrow.addEventListener("mousedown", () => {
+    player.dx = -player.speed;
+});
+leftArrow.addEventListener("mouseup", () => {
+    player.dx = 0;
+});
+rightArrow.addEventListener("mousedown", () => {
+    player.dx = player.speed;
+});
+rightArrow.addEventListener("mouseup", () => {
+    player.dx = 0;
+});
+fireButton.addEventListener("click", () => {
+    if (!gameOver) shootBullet();
+});
+
+// Soporte para dispositivos táctiles
+leftArrow.addEventListener("touchstart", () => {
+    player.dx = -player.speed;
+});
+leftArrow.addEventListener("touchend", () => {
+    player.dx = 0;
+});
+rightArrow.addEventListener("touchstart", () => {
+    player.dx = player.speed;
+});
+rightArrow.addEventListener("touchend", () => {
+    player.dx = 0;
+});
+fireButton.addEventListener("touchstart", () => {
+    if (!gameOver) shootBullet();
+});
